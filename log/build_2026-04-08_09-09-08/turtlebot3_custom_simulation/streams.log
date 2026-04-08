@@ -1,0 +1,74 @@
+[0.748s] Invoking command in '/home/elianaostro/Documents/robotica/build/turtlebot3_custom_simulation': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/jazzy /usr/bin/cmake /home/elianaostro/Documents/robotica/turtlebot3_custom_simulation -DAMENT_CMAKE_SYMLINK_INSTALL=1 -DCMAKE_INSTALL_PREFIX=/home/elianaostro/Documents/robotica/install/turtlebot3_custom_simulation
+[0.798s] -- Found ament_cmake: 2.5.5 (/opt/ros/jazzy/share/ament_cmake/cmake)
+[1.624s] -- Override CMake install command with custom implementation using symlinks instead of copying resources
+[1.678s] -- Found geometry_msgs: 5.3.6 (/opt/ros/jazzy/share/geometry_msgs/cmake)
+[1.830s] -- Found rosidl_generator_c: 4.6.7 (/opt/ros/jazzy/share/rosidl_generator_c/cmake)
+[1.865s] -- Found rosidl_generator_cpp: 4.6.7 (/opt/ros/jazzy/share/rosidl_generator_cpp/cmake)
+[1.914s] -- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c
+[1.977s] -- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp
+[2.198s] -- Found nav_msgs: 5.3.6 (/opt/ros/jazzy/share/nav_msgs/cmake)
+[2.437s] -- Found rclcpp: 28.1.16 (/opt/ros/jazzy/share/rclcpp/cmake)
+[2.684s] -- Found rmw_implementation_cmake: 7.3.3 (/opt/ros/jazzy/share/rmw_implementation_cmake/cmake)
+[2.694s] -- Found rmw_fastrtps_cpp: 8.4.3 (/opt/ros/jazzy/share/rmw_fastrtps_cpp/cmake)
+[3.015s] -- Using RMW implementation 'rmw_fastrtps_cpp' as default
+[3.283s] -- Found sensor_msgs: 5.3.6 (/opt/ros/jazzy/share/sensor_msgs/cmake)
+[3.431s] -- Found tf2: 0.36.19 (/opt/ros/jazzy/share/tf2/cmake)
+[3.454s] -- Found tf2_msgs: 0.36.19 (/opt/ros/jazzy/share/tf2_msgs/cmake)
+[3.781s] -- Found turtlebot3_msgs: 2.4.0 (/opt/ros/jazzy/share/turtlebot3_msgs/cmake)
+[4.474s] -- Configuring done (3.7s)
+[4.528s] -- Generating done (0.0s)
+[4.546s] -- Build files have been written to: /home/elianaostro/Documents/robotica/build/turtlebot3_custom_simulation
+[4.576s] Invoked command in '/home/elianaostro/Documents/robotica/build/turtlebot3_custom_simulation' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/jazzy /usr/bin/cmake /home/elianaostro/Documents/robotica/turtlebot3_custom_simulation -DAMENT_CMAKE_SYMLINK_INSTALL=1 -DCMAKE_INSTALL_PREFIX=/home/elianaostro/Documents/robotica/install/turtlebot3_custom_simulation
+[4.582s] Invoking command in '/home/elianaostro/Documents/robotica/build/turtlebot3_custom_simulation': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/jazzy /usr/bin/cmake --build /home/elianaostro/Documents/robotica/build/turtlebot3_custom_simulation -- -j8 -l8
+[4.782s] [ 50%] [32mBuilding CXX object CMakeFiles/turtlebot3_custom_simulation.dir/src/turtlebot3_custom_simulation.cpp.o[0m
+[42.445s] [100%] [32m[1mLinking CXX executable turtlebot3_custom_simulation[0m
+[44.380s] [100%] Built target turtlebot3_custom_simulation
+[44.426s] Invoked command in '/home/elianaostro/Documents/robotica/build/turtlebot3_custom_simulation' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/jazzy /usr/bin/cmake --build /home/elianaostro/Documents/robotica/build/turtlebot3_custom_simulation -- -j8 -l8
+[44.466s] Invoking command in '/home/elianaostro/Documents/robotica/build/turtlebot3_custom_simulation': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/jazzy /usr/bin/cmake --install /home/elianaostro/Documents/robotica/build/turtlebot3_custom_simulation
+[44.521s] -- Install configuration: ""
+[44.523s] -- Execute custom install script
+[44.524s] -- Symlinking: /home/elianaostro/Documents/robotica/install/turtlebot3_custom_simulation/lib/turtlebot3_custom_simulation/turtlebot3_custom_simulation
+[44.563s] -- Symlinking: /home/elianaostro/Documents/robotica/install/turtlebot3_custom_simulation/share/turtlebot3_custom_simulation/launch/custom_casa.launch.py
+[44.600s] -- Symlinking: /home/elianaostro/Documents/robotica/install/turtlebot3_custom_simulation/share/turtlebot3_custom_simulation/launch/custom_casa_obs.launch.py
+[44.635s] -- Symlinking: /home/elianaostro/Documents/robotica/install/turtlebot3_custom_simulation/share/turtlebot3_custom_simulation/launch/custom_maze.launch.py
+[44.670s] -- Symlinking: /home/elianaostro/Documents/robotica/install/turtlebot3_custom_simulation/share/turtlebot3_custom_simulation/launch/custom_room.launch.py
+[44.708s] -- Symlinking: /home/elianaostro/Documents/robotica/install/turtlebot3_custom_simulation/share/turtlebot3_custom_simulation/launch/custom_simulation.launch.py
+[44.747s] -- Symlinking: /home/elianaostro/Documents/robotica/install/turtlebot3_custom_simulation/share/turtlebot3_custom_simulation/param/burger.yaml
+[44.784s] -- Symlinking: /home/elianaostro/Documents/robotica/install/turtlebot3_custom_simulation/share/turtlebot3_custom_simulation/worlds/Armchair/model.config
+[44.822s] -- Symlinking: /home/elianaostro/Documents/robotica/install/turtlebot3_custom_simulation/share/turtlebot3_custom_simulation/worlds/Armchair/model.sdf
+[44.859s] -- Symlinking: /home/elianaostro/Documents/robotica/install/turtlebot3_custom_simulation/share/turtlebot3_custom_simulation/worlds/HospitalBot/model.config
+[44.897s] -- Symlinking: /home/elianaostro/Documents/robotica/install/turtlebot3_custom_simulation/share/turtlebot3_custom_simulation/worlds/HospitalBot/model.sdf
+[44.940s] -- Symlinking: /home/elianaostro/Documents/robotica/install/turtlebot3_custom_simulation/share/turtlebot3_custom_simulation/worlds/Sofa/model.config
+[44.980s] -- Symlinking: /home/elianaostro/Documents/robotica/install/turtlebot3_custom_simulation/share/turtlebot3_custom_simulation/worlds/Sofa/model.sdf
+[45.016s] -- Symlinking: /home/elianaostro/Documents/robotica/install/turtlebot3_custom_simulation/share/turtlebot3_custom_simulation/worlds/Suitcase1/model.config
+[45.052s] -- Symlinking: /home/elianaostro/Documents/robotica/install/turtlebot3_custom_simulation/share/turtlebot3_custom_simulation/worlds/Suitcase1/model.sdf
+[45.087s] -- Symlinking: /home/elianaostro/Documents/robotica/install/turtlebot3_custom_simulation/share/turtlebot3_custom_simulation/worlds/Suitcase2H/model.config
+[45.123s] -- Symlinking: /home/elianaostro/Documents/robotica/install/turtlebot3_custom_simulation/share/turtlebot3_custom_simulation/worlds/Suitcase2H/model.sdf
+[45.158s] -- Symlinking: /home/elianaostro/Documents/robotica/install/turtlebot3_custom_simulation/share/turtlebot3_custom_simulation/worlds/Walls/model.config
+[45.193s] -- Symlinking: /home/elianaostro/Documents/robotica/install/turtlebot3_custom_simulation/share/turtlebot3_custom_simulation/worlds/Walls/model.sdf
+[45.228s] -- Symlinking: /home/elianaostro/Documents/robotica/install/turtlebot3_custom_simulation/share/turtlebot3_custom_simulation/worlds/casa.world
+[45.263s] -- Symlinking: /home/elianaostro/Documents/robotica/install/turtlebot3_custom_simulation/share/turtlebot3_custom_simulation/worlds/casa_o.world
+[45.299s] -- Symlinking: /home/elianaostro/Documents/robotica/install/turtlebot3_custom_simulation/share/turtlebot3_custom_simulation/worlds/map/map.pgm
+[45.334s] -- Symlinking: /home/elianaostro/Documents/robotica/install/turtlebot3_custom_simulation/share/turtlebot3_custom_simulation/worlds/map/map.yaml
+[45.375s] -- Symlinking: /home/elianaostro/Documents/robotica/install/turtlebot3_custom_simulation/share/turtlebot3_custom_simulation/worlds/maze.world
+[45.413s] -- Symlinking: /home/elianaostro/Documents/robotica/install/turtlebot3_custom_simulation/share/turtlebot3_custom_simulation/worlds/room.world
+[45.451s] -- Symlinking: /home/elianaostro/Documents/robotica/install/turtlebot3_custom_simulation/share/turtlebot3_custom_simulation/worlds/slippery.world
+[45.489s] -- Symlinking: /home/elianaostro/Documents/robotica/install/turtlebot3_custom_simulation/include//turtlebot3_custom_simulation/turtlebot3_custom_simulation.hpp
+[45.525s] -- Symlinking: /home/elianaostro/Documents/robotica/install/turtlebot3_custom_simulation/share/ament_index/resource_index/package_run_dependencies/turtlebot3_custom_simulation
+[45.560s] -- Symlinking: /home/elianaostro/Documents/robotica/install/turtlebot3_custom_simulation/share/ament_index/resource_index/parent_prefix_path/turtlebot3_custom_simulation
+[45.597s] -- Symlinking: /home/elianaostro/Documents/robotica/install/turtlebot3_custom_simulation/share/turtlebot3_custom_simulation/environment/ament_prefix_path.sh
+[45.633s] -- Symlinking: /home/elianaostro/Documents/robotica/install/turtlebot3_custom_simulation/share/turtlebot3_custom_simulation/environment/ament_prefix_path.dsv
+[45.668s] -- Symlinking: /home/elianaostro/Documents/robotica/install/turtlebot3_custom_simulation/share/turtlebot3_custom_simulation/environment/path.sh
+[45.705s] -- Symlinking: /home/elianaostro/Documents/robotica/install/turtlebot3_custom_simulation/share/turtlebot3_custom_simulation/environment/path.dsv
+[45.742s] -- Symlinking: /home/elianaostro/Documents/robotica/install/turtlebot3_custom_simulation/share/turtlebot3_custom_simulation/local_setup.bash
+[45.778s] -- Symlinking: /home/elianaostro/Documents/robotica/install/turtlebot3_custom_simulation/share/turtlebot3_custom_simulation/local_setup.sh
+[45.813s] -- Symlinking: /home/elianaostro/Documents/robotica/install/turtlebot3_custom_simulation/share/turtlebot3_custom_simulation/local_setup.zsh
+[45.848s] -- Symlinking: /home/elianaostro/Documents/robotica/install/turtlebot3_custom_simulation/share/turtlebot3_custom_simulation/local_setup.dsv
+[45.883s] -- Symlinking: /home/elianaostro/Documents/robotica/install/turtlebot3_custom_simulation/share/turtlebot3_custom_simulation/package.dsv
+[45.919s] -- Symlinking: /home/elianaostro/Documents/robotica/install/turtlebot3_custom_simulation/share/ament_index/resource_index/packages/turtlebot3_custom_simulation
+[45.956s] -- Symlinking: /home/elianaostro/Documents/robotica/install/turtlebot3_custom_simulation/share/turtlebot3_custom_simulation/cmake/ament_cmake_export_include_directories-extras.cmake
+[45.992s] -- Symlinking: /home/elianaostro/Documents/robotica/install/turtlebot3_custom_simulation/share/turtlebot3_custom_simulation/cmake/ament_cmake_export_dependencies-extras.cmake
+[46.028s] -- Symlinking: /home/elianaostro/Documents/robotica/install/turtlebot3_custom_simulation/share/turtlebot3_custom_simulation/cmake/turtlebot3_custom_simulationConfig.cmake
+[46.064s] -- Symlinking: /home/elianaostro/Documents/robotica/install/turtlebot3_custom_simulation/share/turtlebot3_custom_simulation/cmake/turtlebot3_custom_simulationConfig-version.cmake
+[46.099s] -- Symlinking: /home/elianaostro/Documents/robotica/install/turtlebot3_custom_simulation/share/turtlebot3_custom_simulation/package.xml
+[46.142s] Invoked command in '/home/elianaostro/Documents/robotica/build/turtlebot3_custom_simulation' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/jazzy /usr/bin/cmake --install /home/elianaostro/Documents/robotica/build/turtlebot3_custom_simulation

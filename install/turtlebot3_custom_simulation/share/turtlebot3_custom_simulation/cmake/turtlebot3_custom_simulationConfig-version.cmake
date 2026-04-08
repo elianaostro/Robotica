@@ -1,0 +1,1 @@
+/home/elianaostro/Documents/robotica/build/turtlebot3_custom_simulation/ament_cmake_core/turtlebot3_custom_simulationConfig-version.cmake

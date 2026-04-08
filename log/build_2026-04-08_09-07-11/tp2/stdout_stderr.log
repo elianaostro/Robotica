@@ -1,0 +1,28 @@
+running develop
+/usr/lib/python3/dist-packages/setuptools/command/easy_install.py:363: UserWarning: Unbuilt egg for pytest-repeat [unknown version] (/usr/lib/python3/dist-packages)
+  self.local_index = Environment(self.shadow_path + sys.path)
+running egg_info
+creating tp2.egg-info
+writing tp2.egg-info/PKG-INFO
+writing dependency_links to tp2.egg-info/dependency_links.txt
+writing entry points to tp2.egg-info/entry_points.txt
+writing requirements to tp2.egg-info/requires.txt
+writing top-level names to tp2.egg-info/top_level.txt
+writing manifest file 'tp2.egg-info/SOURCES.txt'
+reading manifest file 'tp2.egg-info/SOURCES.txt'
+writing manifest file 'tp2.egg-info/SOURCES.txt'
+running build_ext
+Creating /home/elianaostro/Documents/robotica/install/tp2/lib/python3.12/site-packages/tp2.egg-link (link to .)
+Installing my_odometry script to /home/elianaostro/Documents/robotica/install/tp2/lib/tp2
+
+Installed /home/elianaostro/Documents/robotica/build/tp2
+running symlink_data
+creating /home/elianaostro/Documents/robotica/install/tp2/share/ament_index
+creating /home/elianaostro/Documents/robotica/install/tp2/share/ament_index/resource_index
+creating /home/elianaostro/Documents/robotica/install/tp2/share/ament_index/resource_index/packages
+symbolically linking /home/elianaostro/Documents/robotica/build/tp2/resource/tp2 -> /home/elianaostro/Documents/robotica/install/tp2/share/ament_index/resource_index/packages
+symbolically linking /home/elianaostro/Documents/robotica/build/tp2/package.xml -> /home/elianaostro/Documents/robotica/install/tp2/share/tp2
+creating /home/elianaostro/Documents/robotica/install/tp2/share/tp2/launch
+symbolically linking /home/elianaostro/Documents/robotica/build/tp2/launch/launch_my_odometry.launch.py -> /home/elianaostro/Documents/robotica/install/tp2/share/tp2/launch
+creating /home/elianaostro/Documents/robotica/install/tp2/share/tp2/rviz
+symbolically linking /home/elianaostro/Documents/robotica/build/tp2/rviz/odometry.rviz -> /home/elianaostro/Documents/robotica/install/tp2/share/tp2/rviz

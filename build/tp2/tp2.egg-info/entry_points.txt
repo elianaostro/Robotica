@@ -1,0 +1,2 @@
+[console_scripts]
+my_odometry = tp2.my_odometry:main
