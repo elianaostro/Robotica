@@ -1,1 +1,0 @@
-/home/elianaostro/Documents/robotica/build/tp2/launch/launch_my_odometry.launch.py
