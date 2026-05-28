@@ -88,9 +88,21 @@ class EKFCorrection(Node):
                 normalize_angle(phi_obs - phi_exp)
             ])
 
+            # Innovation gating: reject outliers using Mahalanobis distance
+            # chi2(2 DOF) threshold at 99.9% = 13.8; anything beyond this is an outlier
+            mahal_sq = float(innovation @ np.linalg.inv(St) @ innovation)
+            if mahal_sq > 13.8:
+                self.get_logger().debug(
+                    f'Landmark {i} gated out: mahal={mahal_sq:.1f}, '
+                    f'dr={innovation[0]:.2f} m, dphi={innovation[1]:.2f} rad')
+                continue
+
             mu = mu + Kt @ innovation
             mu[2] = normalize_angle(mu[2])
-            sigma = (np.eye(3) - Kt @ Ht) @ sigma
+
+            # Joseph form: numerically stable, guarantees positive-definite covariance
+            I_KH = np.eye(3) - Kt @ Ht
+            sigma = I_KH @ sigma @ I_KH.T + Kt @ self.Qt_i @ Kt.T
             corrected = True
 
         if not corrected:

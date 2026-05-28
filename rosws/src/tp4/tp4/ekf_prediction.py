@@ -52,8 +52,13 @@ class EKFPrediction(Node):
             [0, 0,  1]
         ])
 
+        # Scale process noise by actual motion magnitude so covariance doesn't
+        # inflate when the robot is stationary (dt≈0, dr1≈0, dr2≈0).
+        motion_scale = abs(dt) + abs(dr1) + abs(dr2)
+        Qt_scaled = self.Qt * motion_scale if motion_scale > 1e-6 else np.zeros((3, 3))
+
         # Predicted covariance
-        sigma_bar = Gt @ self.covariance @ Gt.T + self.Qt
+        sigma_bar = Gt @ self.covariance @ Gt.T + Qt_scaled
 
         self.mu = mu_bar
         self.covariance = sigma_bar

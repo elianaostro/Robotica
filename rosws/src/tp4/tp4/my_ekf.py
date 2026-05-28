@@ -122,9 +122,20 @@ class EKFNode(Node):
         pose_stamped.header.frame_id = "map"
         pose_stamped.header.stamp = self.get_clock().now().to_msg()
         pose_stamped.pose = pose_msg.pose.pose   # geometry_msgs/Pose
+
+        # Only record a new path point when the belief moved at least 2 cm,
+        # so noise-driven micro-corrections don't spray the path in all directions.
+        MIN_DIST_SQ = 0.02 ** 2
+        if self.ekf_path_msg.poses:
+            last = self.ekf_path_msg.poses[-1].pose.position
+            dx = pose_stamped.pose.position.x - last.x
+            dy = pose_stamped.pose.position.y - last.y
+            if dx * dx + dy * dy < MIN_DIST_SQ:
+                return
+
         self.ekf_path_msg.poses.append(pose_stamped)
         self.ekf_path_msg.header.stamp = self.get_clock().now().to_msg()
-        self.ekf_path_pub.publish(self.ekf_path_msg) 
+        self.ekf_path_pub.publish(self.ekf_path_msg)
 
     def real_odom_callback(self, data: Odometry):
         pose_stamped = PoseStamped()
