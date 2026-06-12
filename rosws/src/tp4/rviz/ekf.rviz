@@ -289,11 +289,11 @@ Visualization Manager:
           Value: true
         Value: true
       Enabled: true
-      Head Length: 0.30000001192092896
-      Head Radius: 0.10000000149011612
+      Head Length: 0.10000000149011612
+      Head Radius: 0.05000000074505806
       Name: PoseWithCovariance
-      Shaft Length: 1
-      Shaft Radius: 0.05000000074505806
+      Shaft Length: 0.30000001192092896
+      Shaft Radius: 0.019999999552965164
       Shape: Arrow
       Topic:
         Depth: 5

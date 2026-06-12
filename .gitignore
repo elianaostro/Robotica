@@ -5,3 +5,6 @@ rosws/install/
 rosws/log/
 rosws/log_ros/
 rosws/src/turtlebot3_custom_simulation/
+
+**/__pycache__/
+**.zip

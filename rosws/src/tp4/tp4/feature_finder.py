@@ -98,11 +98,9 @@ class LandmarkObserver(Node):
 
             pose = Pose()
 
-            # Polar coordinates in robot frame
+            # Polar coordinates in robot frame — keep in [-π, π] to match LiDAR convention
             r_landmark = np.hypot(lx, ly)
-            theta_landmark = np.arctan2(ly, lx) + 2*np.pi if np.arctan2(ly, lx) < 0 else np.arctan2(ly, lx)
-            # print theta landmark and angle min and max to see if they match
-            # self.get_logger().info(f"Landmark: r={r_landmark}, theta={theta_landmark}, angle_min={angle_min}, angle_max={angle_max}")
+            theta_landmark = np.arctan2(ly, lx)
 
             # Check if landmark is within LiDAR FOV
             if angle_min <= theta_landmark <= angle_max and r_min <= r_landmark <= r_max:
