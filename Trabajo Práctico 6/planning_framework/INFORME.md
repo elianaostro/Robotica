@@ -103,13 +103,30 @@ A* y Dijkstra obtienen **idéntica longitud de camino (72.53)** — ambos óptim
 pero A* explora una fracción de las celdas (búsqueda informada/dirigida hacia la meta).
 
 **3.4 Sobre-ponderar la heurística (`h₂ = w·h`, `w ∈ {1,2,5,10}`).** Esto es **Weighted A\***:
-- `w = 1`: A* estándar, óptimo, expande más nodos.
-- `w > 1`: la heurística deja de ser admisible (sobreestima). La búsqueda se vuelve **más voraz**
-  (greedy), expande **muchos menos nodos** y encuentra solución **más rápido**, pero el camino deja
-  de ser óptimo: su costo puede ser hasta `w` veces el óptimo (cota `cost ≤ w·cost*`).
-- `w → ∞` (p. ej. 10): se comporta casi como *Greedy Best-First Search* — rapidísimo pero con
-  caminos notoriamente subóptimos y sensibles a quedar "tironeado" por la heurística hacia
-  obstáculos. Es el clásico **trade-off velocidad vs. optimalidad**.
+`f(n) = g(n) + w·h(n)`. Se implementó como parámetro `w` en `run_astar` (ver
+`weighted_astar_experiment.py`). Resultados reales sobre este mapa (`start=[44,66] → goal=[80,30]`):
+
+| `w` | Celdas expandidas | Costo `g` | Longitud real | Exceso vs. óptimo |
+|----:|------------------:|----------:|--------------:|------------------:|
+| 1   | 1450              | 72.55     | 72.53         | 0.0 %             |
+| 2   | 308               | 75.35     | 73.94         | +1.9 %            |
+| 5   | 180               | 89.29     | 75.01         | +3.4 %            |
+| 10  | 138               | 105.53    | 94.91         | +30.9 %           |
+
+Lectura de los números:
+- `w = 1`: A* estándar, heurística admisible → camino **óptimo** (72.53), pero expande **1450 celdas**.
+- `w > 1`: la heurística sobreestima y deja de ser admisible. La búsqueda se vuelve **más voraz**
+  (greedy) y expande **muchísimos menos nodos** (308 → 180 → 138, hasta **~10× menos** con `w=10`),
+  encontrando solución más rápido. El precio es la **pérdida de optimalidad**: el camino se alarga
+  (cota teórica `cost ≤ w·cost*`; aquí el exceso real es mucho menor que esa cota holgada).
+- `w → ∞` (p. ej. 10): se comporta casi como *Greedy Best-First Search*. El salto de longitud es
+  ahora notorio (+30.9 %): la heurística "tironea" tan fuerte hacia la meta que el frente de búsqueda
+  ignora rodeos baratos y se queda con la primera ruta que aparece. Es el clásico **trade-off
+  velocidad vs. optimalidad**: entre `w=2` y `w=5` se gana muchísima velocidad por muy poco exceso de
+  longitud (sweet spot), mientras que con `w=10` la velocidad extra ya no compensa el deterioro del camino.
+
+El gráfico `weighted_astar.png` ilustra ambas curvas: las celdas expandidas caen abruptamente
+(1450 → 138) mientras la longitud del camino se mantiene casi plana hasta `w=5` y recién se dispara en `w=10`.
 
 ---
 
@@ -141,7 +158,9 @@ Theta* logra un camino **~10% más corto sobre la misma grilla**. La razón: A* 
 entre centros de celdas adyacentes (pasos horizontales/verticales/diagonales), por lo que aproxima
 una diagonal libre como una escalera de tramos de 45°. Theta*, al reconectar nodos a su "abuelo"
 cuando hay visión directa, reemplaza esas escaleras por **segmentos rectos**, acercándose al camino
-euclídeo verdaderamente más corto. (Ver `astar.png` vs `thetastar.png`.)
+euclídeo verdaderamente más corto. La comparación **visual lado a lado** está en
+`astar_vs_thetastar.png`: a la izquierda el camino "en escalera" de 45° de A* (72.53), a la derecha
+los tramos rectos any-angle de Theta* (65.38). (También las figuras individuales `astar.png` y `thetastar.png`.)
 
 ---
 
@@ -201,6 +220,9 @@ camino se parece al de RRT (zigzag), y con muchas se vuelve recto y casi óptimo
 - `planning_framework.py` — código completo y comentado (todas las funciones implementadas).
 - `test_headless.py` — tests de verificación (unitarios + corridas reales) sin ventanas gráficas.
 - `generate_figures.py` — genera los PNG de los caminos finales.
+- `weighted_astar_experiment.py` — experimento numérico del ejercicio 3.4 (Weighted A* para `w ∈ {1,2,5,10}`).
+- `generate_comparisons.py` — genera las figuras comparativas `astar_vs_thetastar.png` (4.3) y `weighted_astar.png` (3.4).
+- Figuras comparativas: `astar_vs_thetastar.png` (A* vs Theta* lado a lado), `weighted_astar.png` (trade-off de `w`).
 - Figuras: `dijkstra.png`, `astar.png`, `thetastar.png`, `apf.png`, `rrt.png`, `rrtstar.png`.
 
 ### Resultados numéricos (mapa duplicado, `start=[44,66]`, `goal=[80,30]`)

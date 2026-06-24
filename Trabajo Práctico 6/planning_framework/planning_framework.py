@@ -192,11 +192,16 @@ def get_heuristic(cell, goal):
     heuristic = np.linalg.norm(cell - goal)
     return heuristic
 
-def run_astar(occ_map, start, goal):
+def run_astar(occ_map, start, goal, w=1.0, plot=True):
     '''
     Calcula el camino de costo mínimo utilizando el algoritmo A* (Búsqueda Informada).
+    El parámetro w pondera la heurística: f(n) = g(n) + w·h(n) (Weighted A*, ejercicio 3.4).
+      - w = 1  -> A* estándar (heurística admisible, camino óptimo).
+      - w > 1  -> búsqueda más voraz: expande menos nodos pero el camino puede ser subóptimo.
+    plot=False desactiva el dibujo (útil para correr experimentos en lote).
+    Devuelve (celdas_expandidas, costo_g, longitud_real) o None si no hay camino.
     '''
-    print("Ejecutando Algoritmo A*...")
+    print(f"Ejecutando Algoritmo A* (w={w})...")
     plot_map(occ_map, start, goal)
 
     costs = np.ones(occ_map.shape) * np.inf
@@ -215,17 +220,17 @@ def run_astar(occ_map, start, goal):
     skipper = 0
 
     while not np.array_equal(parent, goal):
-        # A* selecciona basándose en f(n) = g(n) + h(n)
-        open_costs = np.where(closed_flags == 1, np.inf, costs) + heuristic
+        # A* selecciona basándose en f(n) = g(n) + w·h(n)  (w=1 -> A* clásico)
+        open_costs = np.where(closed_flags == 1, np.inf, costs) + w * heuristic
 
         x, y = np.unravel_index(open_costs.argmin(), open_costs.shape)
-        
+
         if open_costs[x, y] == np.inf:
-            break  
-        
+            break
+
         parent = np.array([x, y])
         closed_flags[x, y] = 1
-        
+
         # (Ejercicio 3.3)
         # Misma relajacion que Dijkstra: g(child) = g(parent) + costo_arco. La heuristica
         # se suma aparte al elegir el nodo a expandir (linea open_costs = ... + heuristic),
@@ -240,38 +245,48 @@ def run_astar(occ_map, start, goal):
                 predecessors[nx, ny] = parent
 
         skipper += 1
-        if skipper % 5 == 0:
-          plot_expanded(parent, start, goal)
-        else:
-          plot_expanded(parent, start, goal, wait=False)
-    
+        if plot:
+            if skipper % 5 == 0:
+                plot_expanded(parent, start, goal)
+            else:
+                plot_expanded(parent, start, goal, wait=False)
+
     if np.array_equal(parent, goal):
-        reconstruct_and_plot_path(predecessors, costs, start, goal, closed_flags)
+        path_length, path = reconstruct_and_plot_path(predecessors, costs, start, goal, closed_flags, plot=plot)
+        return int(np.count_nonzero(closed_flags)), float(costs[goal[0], goal[1]]), float(path_length), path
     else:
         print("No se encontró un camino válido.")
+        return None
 
-def reconstruct_and_plot_path(predecessors, costs, start, goal, closed_flags):
+def reconstruct_and_plot_path(predecessors, costs, start, goal, closed_flags, plot=True):
     parent = goal
     path_length = 0
     skipper = 0
+    path = [np.array(goal, dtype=float)]          # nodos del camino (meta -> ... -> inicio)
     while predecessors[parent[0], parent[1]][0] >= 0:
         skipper += 1
-        if skipper % 5 == 0:
-          plot_path(parent, goal)
-        else:
-          plot_path(parent, goal, wait = False)
+        if plot:
+            if skipper % 5 == 0:
+              plot_path(parent, goal)
+            else:
+              plot_path(parent, goal, wait = False)
         predecessor = predecessors[parent[0], parent[1]]
         path_length += np.linalg.norm(parent - predecessor)
         parent = predecessor
-    plot_path(start, goal)
+        path.append(np.array(parent, dtype=float))
+    path.reverse()                                # inicio -> meta
 
     print("Meta alcanzada  : " + str(goal))
     print("Celdas expandidas: " + str(np.count_nonzero(closed_flags)))
     print("Costo del camino : " + str(costs[goal[0], goal[1]]))
     print("Longitud real    : " + str(path_length))
 
-    print("\n[INFO] Mostrando mapa final. Cierre la ventana gráfica para terminar.")
-    plt.show()
+    if plot:
+        plot_path(start, goal)
+        print("\n[INFO] Mostrando mapa final. Cierre la ventana gráfica para terminar.")
+        plt.show()
+
+    return path_length, path
 
 # =============================================================================
 # 4. THETA* (A* CON SALTO DE ÁNGULO)
@@ -391,30 +406,37 @@ def run_thetastar(occ_map, start, goal):
     if np.array_equal(parent, goal):
         print("Theta*: ¡Camino Encontrado!")
         path_length = 0
+        path = [np.array(goal, dtype=float)]      # nodos any-angle (meta -> ... -> inicio)
         tmp = predecessors[parent[0], parent[1]]
-        plt.plot([tmp[0], goal[0]], [tmp[1], goal[1]], 
+        plt.plot([tmp[0], goal[0]], [tmp[1], goal[1]],
                  'b-', linewidth=2, zorder=5)
         while not np.array_equal(predecessors[parent[0], parent[1]], parent):
             predecessor = predecessors[parent[0], parent[1]]
-            
+
             # PASAMOS EL PREDECESOR AQUÍ PARA QUE DIBUJE LA LÍNEA DE VISIÓN RECTA
             plot_path(parent, goal, wait=False, predecessor=predecessor)
-            
+
             path_length += np.linalg.norm(parent - predecessor)
             parent = predecessor
-        
+            path.append(np.array(parent, dtype=float))
+        path.reverse()                            # inicio -> meta
+
         # Forzar el render final en la pantalla
         plt.draw()
         plt.pause(0.001)
-        
+
         print("Celdas expandidas: " + str(np.count_nonzero(closed_flags)))
         print("Costo del camino : " + str(costs[goal[0], goal[1]]))
         print("Longitud real    : " + str(path_length))
+
+        print("\n[INFO] Mostrando mapa final. Cierre la ventana gráfica para terminar.")
+        plt.show()
+        return int(np.count_nonzero(closed_flags)), float(costs[goal[0], goal[1]]), float(path_length), path
     else:
         print("No se encontró un camino válido con Theta*.")
-        
-    print("\n[INFO] Mostrando mapa final. Cierre la ventana gráfica para terminar.")
-    plt.show()
+        print("\n[INFO] Mostrando mapa final. Cierre la ventana gráfica para terminar.")
+        plt.show()
+        return None
 
 # =============================================================================
 # 5. SECCIÓN: RRT (RAPIDLY-EXPLORING RANDOM TREES)
